@@ -1,4 +1,5 @@
 import pygame
+import os
 from player import Player
 from laser import Laser
 
@@ -10,7 +11,9 @@ class Enemy(pygame.sprite.Sprite):
         super().__init__()
         self.SCREEN_WIDTH, self.SCREEN_HEIGHT = width, height
         self.color = color
-        self.image = pygame.image.load(f"assets/invador.png").convert_alpha()
+        self.image = pygame.image.load(
+            os.path.join("MessingAround", "assets/invador.png")
+        ).convert_alpha()
         self.image = pygame.transform.rotate(self.image, 180)
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)

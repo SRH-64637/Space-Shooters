@@ -1,6 +1,7 @@
 import pygame
 import random
 import block
+import os
 from player import Player
 from enemy import Enemy
 from menu import MainMenu
@@ -16,11 +17,11 @@ class Game:
         self.SCREEN_WIDTH, self.SCREEN_HEIGHT = 800, 600
         self.window = pygame.Surface((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
         self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
-        self.font_name = "assets/8-BIT WONDER.TTF"
+        self.font_name = os.path.join("MessingAround", "assets/8-BIT WONDER.TTF")
         pygame.display.set_caption("SPACE SHOOTERS")
         self.curr_menu = MainMenu(self)
         self.heart_image = pygame.image.load(
-            "assets/heart-removebg-preview.png"
+            os.path.join("MessingAround", "assets/heart-removebg-preview.png")
         ).convert_alpha()
         # Set the size you want to scale the image to
         new_size = (60, 60)  # Change this to your desired size
@@ -106,7 +107,9 @@ class Game:
         self.Enter_key, self.Up_key, self.Down_key = False, False, False
 
     def initialize_game(self):
-        BG = pygame.image.load("assets/background-black.png").convert_alpha()
+        BG = pygame.image.load(
+            os.path.join("MessingAround", "assets/background-black.png")
+        ).convert_alpha()
         self.BG2 = pygame.transform.scale(BG, (800, 600))
         self.player_group = pygame.sprite.Group()
         self.enemy_group = pygame.sprite.Group()

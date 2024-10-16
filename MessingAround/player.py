@@ -1,4 +1,5 @@
 import pygame
+import os
 from laser import Laser
 
 
@@ -6,7 +7,9 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, SCREEN_WIDTH, SCREEN_HEIGHT):
         super().__init__()
         self.SCREEN_HEIGHT, self.SCREEN_WIDTH = SCREEN_HEIGHT, SCREEN_WIDTH
-        self.image = pygame.image.load("assets/pixel_ship_yellow.png").convert_alpha()
+        self.image = pygame.image.load(
+            os.path.join("MessingAround", "assets/pixel_ship_yellow.png")
+        ).convert_alpha()
         self.player_laser_group = pygame.sprite.Group()
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
@@ -15,7 +18,9 @@ class Player(pygame.sprite.Sprite):
         self.laser_ready = True
         self.laser_time = 0
         self.laser_delay = 200
-        self.laser_sfx = pygame.mixer.Sound("assets/laser.mp3")
+        self.laser_sfx = pygame.mixer.Sound(
+            os.path.join("MessingAround", "assets/laser.mp3")
+        )
 
     def track_movements(self):
         keys = pygame.key.get_pressed()
